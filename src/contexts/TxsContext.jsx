@@ -1,29 +1,21 @@
 import React, {
   createContext,
-  useState,
   useContext,
+  useState,
 } from 'react';
 
 import useData from '../hooks/useData';
 
 export const TxsContext = createContext({
   txs: [],
-  addItem: (item) => {},
-  removeItem: (id) => {},
+  handleTxs: () => {},
 });
-export const useTxs = () => {
-  const context = useContext(TxsContext);
-  if (context === undefined) {
-    throw new Error(
-      'useTxs must be used within a TxsProvider'
-    );
-  }
-  return context;
-};
+
+export const useTxs = () => useContext(TxsContext);
 
 export const TxsProvider = ({ children }) => {
-  const data = useData();
-  const [txs, setTxs] = useState(data);
+  //   const data = useData();
+  const [txs, setTxs] = useState(useData());
 
   const handleTxs = (handler) => {
     setTxs(handler);
@@ -35,5 +27,3 @@ export const TxsProvider = ({ children }) => {
     </TxsContext.Provider>
   );
 };
-
-export default TxsContext;

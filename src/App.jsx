@@ -7,6 +7,8 @@ import magnifier from './assets/images/magnifier.svg';
 import useData from './hooks/useData';
 import cuid from 'cuid';
 import down from './assets/images/down.svg';
+import { useContext } from 'react';
+import { TxsContext } from './contexts/TxsContext';
 // import { ethers } from 'ethers';
 
 // (async () => {
@@ -249,8 +251,7 @@ const RightArr = styled.img`
 `;
 
 function App() {
-  const txs = useData();
-  console.log(txs);
+  const txsCtx = useContext(TxsContext);
   const shorten = (ethAddr) =>
     ethAddr.slice(0, 6) + '...' + ethAddr.slice(-6);
   return (
@@ -291,7 +292,7 @@ function App() {
         </HeadBottom>
       </Head>
       <Body>
-        {txs.map((tx) => (
+        {txsCtx.txs.map((tx) => (
           <Row key={cuid()}>
             <User>{shorten(tx.user)}</User>
             <EncTxHash>{shorten(tx.encTxHash)}</EncTxHash>
