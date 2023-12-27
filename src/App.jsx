@@ -8,7 +8,7 @@ import useData from './hooks/useData';
 import cuid from 'cuid';
 import down from './assets/images/down.svg';
 import { useContext } from 'react';
-import { TxsContext } from './contexts/TxsContext';
+import { useTxs } from './contexts/TxsContext';
 // import { ethers } from 'ethers';
 
 // (async () => {
@@ -251,7 +251,7 @@ const RightArr = styled.img`
 `;
 
 function App() {
-  const txsCtx = useContext(TxsContext);
+  const txsCtx = useTxs();
   const shorten = (ethAddr) =>
     ethAddr.slice(0, 6) + '...' + ethAddr.slice(-6);
   return (
