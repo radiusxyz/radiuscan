@@ -18,26 +18,21 @@ import BlockTxs from './pages/BlockTxs';
 
 const router = createBrowserRouter([
   {
+    index: true,
     path: '/',
     element: <TotalTxs />,
-    children: [
-      {
-        index: true,
-        element: <TotalTxs />,
-        loader: () => {
-          window.scrollTo(0, 0);
-          return null;
-        },
-      },
-      {
-        path: 'block',
-        element: <BlockTxs />,
-        loader: () => {
-          window.scrollTo(0, 0);
-          return null;
-        },
-      },
-    ],
+    loader: () => {
+      window.scrollTo(0, 0);
+      return null;
+    },
+  },
+  {
+    path: 'block',
+    element: <BlockTxs />,
+    loader: () => {
+      window.scrollTo(0, 0);
+      return null;
+    },
   },
 ]);
 

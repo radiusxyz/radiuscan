@@ -93,8 +93,8 @@ const Logo = styled.img`
 `;
 const Text = styled.span`
   font-family: Russo One;
-  color: black;
   font-size: 22px;
+  color: #5a9bb0;
 `;
 
 const AddCustomerBtn = styled.button`
@@ -128,20 +128,21 @@ const HeadBottom = styled.div`
 
 const HeaderText = styled.span`
   font-family: Inter;
-  font-size: 11px;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 16px;
   letter-spacing: 0.44px;
   text-transform: uppercase;
   flex: 1;
+  color: #5a9bb0;
 `;
 
 const Body = styled.div`
   display: flex;
   height: 100%;
   width: 100%;
-  background: #f9fafc;
+  background: #f4fcff;
   flex-direction: column;
   overflow-y: scroll;
 `;
@@ -162,17 +163,18 @@ const Cell = styled.span`
   font-style: normal;
   line-height: 20px;
   flex: 1;
-  color: var(--Gray-700, #464f60);
+  // color: var(--Gray-700, #464f60);
+  color: #2b8492;
 `;
 
 const User = styled(Cell)`
-  color: var(--Gray-900, #171c26);
+  color: #5a9bb0;
   font-weight: 500;
   letter-spacing: 0.28px;
 `;
 
 const EncTxHash = styled(Cell)``;
-const RawTxHash = styled(Cell)``;
+const DecTxHash = styled(Cell)``;
 const SeqF = styled(Cell)``;
 const SeqL = styled(Cell)``;
 const Block = styled(Cell)``;
@@ -270,7 +272,7 @@ const Table = () => {
         <HeadBottom>
           <HeaderText>User</HeaderText>
           <HeaderText>EncTxHash</HeaderText>
-          <HeaderText>RawTxHash</HeaderText>
+          <HeaderText>DecTxHash</HeaderText>
           <HeaderText>Follower</HeaderText>
           <HeaderText>Leader</HeaderText>
           <HeaderText>Block</HeaderText>
@@ -287,7 +289,7 @@ const Table = () => {
           <Row key={cuid()}>
             <User>{shorten(tx.user)}</User>
             <EncTxHash>{shorten(tx.encTxHash)}</EncTxHash>
-            <RawTxHash>{shorten(tx.decTxHash)}</RawTxHash>
+            <DecTxHash>{shorten(tx.decTxHash)}</DecTxHash>
             <SeqF>{shorten(tx.seqF)}</SeqF>
             <SeqL>{shorten(tx.seqL)}</SeqL>
             <Block>{tx.block}</Block>
