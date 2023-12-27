@@ -287,8 +287,17 @@ const Table = () => {
     setValue(e.target.value.trim());
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleFilter();
+    }
+  };
+
   const handleFilter = () => {
-    if (!value) return;
+    if (!value) {
+      txsCtx.handleTxs(() => txsCtx.data);
+      return;
+    }
     txsCtx.handleTxs(() =>
       txsCtx.data.filter((tx) => {
         return Object.values(tx).includes(value);
@@ -307,6 +316,7 @@ const Table = () => {
                 placeholder='Search...'
                 value={value}
                 onChange={handleChange}
+                onKeyDown={handleKeyDown}
               />
             </Search>{' '}
             <FilterBtn onClick={handleFilter}>
