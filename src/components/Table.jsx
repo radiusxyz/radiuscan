@@ -7,6 +7,7 @@ import magnifier from '../assets/images/magnifier.svg';
 import cuid from 'cuid';
 import down from '../assets/images/down.svg';
 import { useTxs } from '../contexts/TxsContext';
+import Arrow from './Arrow';
 
 const TableWrapper = styled.div`
   display: flex;
@@ -224,23 +225,23 @@ const Pagination = styled.div`
 const Element = styled.button`
   padding: 6px 11px;
   display: flex;
+  color: #5a9bb0;
   align-items: center;
   justify-content: center;
   background: #f8f9fa;
   border-radius: 8px;
   border: 1px solid lightgray;
   cursor: pointer;
-  &:hover {
-    filter: invert(90%);
-  }
 `;
 
-const LeftArr = styled.img`
+const LeftArr = styled.div`
   transform: rotate(90deg);
+  color: #5a9bb0;
 `;
 
-const RightArr = styled.img`
+const RightArr = styled.div`
   transform: rotate(-90deg);
+  color: #5a9bb0;
 `;
 
 const Table = () => {
@@ -324,11 +325,15 @@ const Table = () => {
         <Pagination>
           <Element>First</Element>
           <Element>
-            <LeftArr src={down} />
+            <LeftArr>
+              <Arrow />
+            </LeftArr>
           </Element>
           <Element>Page 1 of 1000</Element>
           <Element>
-            <RightArr src={down} />
+            <RightArr>
+              <Arrow />
+            </RightArr>
           </Element>
           <Element>Last</Element>
         </Pagination>
