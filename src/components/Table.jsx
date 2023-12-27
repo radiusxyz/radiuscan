@@ -251,7 +251,7 @@ const RightArr = styled.div`
 `;
 
 const shorten = (ethAddr) =>
-  ethAddr.slice(0, 6) + '...' + ethAddr.slice(-6);
+  ethAddr.slice(0, 5) + '...' + ethAddr.slice(-3);
 
 const Table = () => {
   const txsCtx = useTxs();
