@@ -4,11 +4,13 @@ import filter from '../assets/images/filter.svg';
 import search from '../assets/images/search.svg';
 // import add from '../assets/images/add.svg';
 import magnifier from '../assets/images/magnifier.svg';
+import copy from '../assets/images/copy.svg';
 import cuid from 'cuid';
 import down from '../assets/images/down.svg';
 import { useTxs } from '../contexts/TxsContext';
 import Arrow from './Arrow';
 import { Link } from 'react-router-dom';
+import Copy from './Copy';
 
 const StyledLink = styled(Link)`
   color: inherit;
@@ -164,31 +166,55 @@ const Row = styled.div`
   }
 `;
 
+const CellWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  color: #2b8492;
+  cursor: pointer;
+`;
 const Cell = styled.span`
   font-family: Inter;
+  flex: 1;
   font-size: 14px;
   font-style: normal;
   line-height: 20px;
-  flex: 1;
   // color: var(--Gray-700, #464f60);
   color: #2b8492;
 `;
 
+// const Copy = styled.img`
+//   width: 12px;
+//   cursor: pointer;
+// `;
+
 const User = styled(Cell)`
   color: #5a9bb0;
   font-weight: 500;
+  flex: 0;
   letter-spacing: 0.28px;
 `;
 
-const EncTxHash = styled(Cell)``;
-const DecTxHash = styled(Cell)``;
-const SeqF = styled(Cell)``;
-const SeqL = styled(Cell)``;
+const EncTxHash = styled(Cell)`
+  flex: 0;
+`;
+const DecTxHash = styled(Cell)`
+  flex: 0;
+`;
+const SeqF = styled(Cell)`
+  flex: 0;
+`;
+const SeqL = styled(Cell)`
+  flex: 0;
+`;
 const Block = styled(Cell)``;
 const Order = styled(Cell)``;
 const TimeStamp = styled(Cell)``;
 const Rollup = styled(Cell)``;
-const RollOp = styled(Cell)``;
+const RollOp = styled(Cell)`
+  flex: 0;
+`;
 const Fee = styled(Cell)``;
 
 const Tag = styled.div`
@@ -314,11 +340,31 @@ const Table = () => {
       <Body>
         {txsCtx.txs.map((tx) => (
           <Row key={cuid()}>
-            <User>{shorten(tx.user)}</User>
-            <EncTxHash>{shorten(tx.encTxHash)}</EncTxHash>
-            <DecTxHash>{shorten(tx.decTxHash)}</DecTxHash>
-            <SeqF>{shorten(tx.seqF)}</SeqF>
-            <SeqL>{shorten(tx.seqL)}</SeqL>
+            <CellWrapper>
+              <User>{shorten(tx.user)}</User>
+              <Copy />
+            </CellWrapper>
+
+            <CellWrapper>
+              <EncTxHash>{shorten(tx.encTxHash)}</EncTxHash>
+              <Copy />
+            </CellWrapper>
+
+            <CellWrapper>
+              <DecTxHash>{shorten(tx.decTxHash)}</DecTxHash>
+              <Copy />
+            </CellWrapper>
+
+            <CellWrapper>
+              <SeqF>{shorten(tx.seqF)}</SeqF>
+              <Copy />
+            </CellWrapper>
+
+            <CellWrapper>
+              <SeqL>{shorten(tx.seqL)}</SeqL>
+              <Copy />
+            </CellWrapper>
+
             <Block>
               <StyledLink to={`/block/${tx.block}`}>
                 {tx.block}
@@ -327,7 +373,11 @@ const Table = () => {
             <Order>{tx.order}</Order>
             <TimeStamp>{tx.timestamp}</TimeStamp>
             <Rollup>{tx.rollup}</Rollup>
-            <RollOp>{shorten(tx.rollOp)}</RollOp>
+            <CellWrapper>
+              <RollOp>{shorten(tx.rollOp)}</RollOp>
+              <Copy />
+            </CellWrapper>
+
             {(tx.status === 'fail' && (
               <Tag>
                 <TagText status={tx.status}>Fail</TagText>
