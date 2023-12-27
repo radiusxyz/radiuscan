@@ -4,7 +4,7 @@ import filter from './assets/images/filter.svg';
 import search from './assets/images/search.svg';
 import add from './assets/images/add.svg';
 import magnifier from './assets/images/magnifier.svg';
-import useTxs from './assets/useData';
+import useData from './hooks/useData';
 import cuid from 'cuid';
 import down from './assets/images/down.svg';
 // import { ethers } from 'ethers';
@@ -249,9 +249,10 @@ const RightArr = styled.img`
 `;
 
 function App() {
+  const txs = useData();
+  console.log(txs);
   const shorten = (ethAddr) =>
     ethAddr.slice(0, 6) + '...' + ethAddr.slice(-6);
-  const txs = useTxs();
   return (
     <Table>
       <Head>
@@ -294,7 +295,7 @@ function App() {
           <Row key={cuid()}>
             <User>{shorten(tx.user)}</User>
             <EncTxHash>{shorten(tx.encTxHash)}</EncTxHash>
-            <RawTxHash>{shorten(tx.rawTxHash)}</RawTxHash>
+            <RawTxHash>{shorten(tx.decTxHash)}</RawTxHash>
             <SeqF>{shorten(tx.seqF)}</SeqF>
             <SeqL>{shorten(tx.seqL)}</SeqL>
             <Block>{tx.block}</Block>
