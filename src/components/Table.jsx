@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import filter from '../assets/images/filter.svg';
 import search from '../assets/images/search.svg';
@@ -8,6 +8,12 @@ import cuid from 'cuid';
 import down from '../assets/images/down.svg';
 import { useTxs } from '../contexts/TxsContext';
 import Arrow from './Arrow';
+import { Link } from 'react-router-dom';
+
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`;
 
 const TableWrapper = styled.div`
   display: flex;
@@ -199,13 +205,13 @@ const TagText = styled.span`
   line-height: 18px;
   letter-spacing: 0.36px;
   background: ${({ status }) =>
-    (status == -1 && 'var(--Red-0, #FAF0F3)') ||
-    (status == 0 && 'rgba(214, 162, 67, 0.12)') ||
-    (status == 1 && 'var(--Green-0, #E1FCEF)')};
+    (status === 'fail' && 'var(--Red-0, #FAF0F3)') ||
+    (status === 'pending' && 'rgba(214, 162, 67, 0.12)') ||
+    (status === 'success' && 'var(--Green-0, #E1FCEF)')};
   color: ${({ status }) =>
-    (status == -1 && 'var(--Red-500, #D12953)') ||
-    (status == 0 && '#D6A243') ||
-    (status == 1 && 'var(--Green-500, #14804A)')};
+    (status === 'fail' && 'var(--Red-500, #D12953)') ||
+    (status === 'pending' && '#D6A243') ||
+    (status === 'success' && 'var(--Green-500, #14804A)')};
 `;
 
 const Footer = styled.div`
@@ -244,22 +250,42 @@ const RightArr = styled.div`
   color: #5a9bb0;
 `;
 
+const shorten = (ethAddr) =>
+  ethAddr.slice(0, 6) + '...' + ethAddr.slice(-6);
+
 const Table = () => {
   const txsCtx = useTxs();
-  const shorten = (ethAddr) =>
-    ethAddr.slice(0, 6) + '...' + ethAddr.slice(-6);
+  const [value, setValue] = useState('');
+
+  const handleChange = (e) => {
+    setValue(e.target.value.trim());
+  };
+
+  const handleFilter = () => {
+    if (!value) return;
+    txsCtx.handleTxs(() =>
+      txsCtx.data.filter((tx) => {
+        return Object.values(tx).includes(value);
+      })
+    );
+  };
+
   return (
     <TableWrapper>
       <Head>
         <HeadTop>
           <HeadTopLeft>
-            <FilterBtn>
-              <img src={filter} />
-            </FilterBtn>
             <Search>
               <img src={search} />
-              <SearchInput placeholder='Search...' />
-            </Search>
+              <SearchInput
+                placeholder='Search...'
+                value={value}
+                onChange={handleChange}
+              />
+            </Search>{' '}
+            <FilterBtn onClick={handleFilter}>
+              <img src={filter} />
+            </FilterBtn>
           </HeadTopLeft>
           {/* <AddCustomerBtn>
               <img src={add} />
@@ -293,24 +319,28 @@ const Table = () => {
             <DecTxHash>{shorten(tx.decTxHash)}</DecTxHash>
             <SeqF>{shorten(tx.seqF)}</SeqF>
             <SeqL>{shorten(tx.seqL)}</SeqL>
-            <Block>{tx.block}</Block>
+            <Block>
+              <StyledLink to={`/block/${tx.block}`}>
+                {tx.block}
+              </StyledLink>
+            </Block>
             <Order>{tx.order}</Order>
             <TimeStamp>{tx.timestamp}</TimeStamp>
             <Rollup>{tx.rollup}</Rollup>
             <RollOp>{shorten(tx.rollOp)}</RollOp>
-            {(tx.status === -1 && (
+            {(tx.status === 'fail' && (
               <Tag>
                 <TagText status={tx.status}>Fail</TagText>
               </Tag>
             )) ||
-              (tx.status === 0 && (
+              (tx.status === 'pending' && (
                 <Tag>
                   <TagText status={tx.status}>
                     Pending
                   </TagText>
                 </Tag>
               )) ||
-              (tx.status === 1 && (
+              (tx.status === 'success' && (
                 <Tag>
                   <TagText status={tx.status}>
                     Success

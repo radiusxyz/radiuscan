@@ -122,6 +122,8 @@ const rollOps = {
   ],
 };
 
+const statuses = ['fail', 'pending', 'success'];
+
 function useData() {
   const pickAddr = (arr) =>
     arr[Math.floor(Math.random() * arr.length)];
@@ -134,12 +136,12 @@ function useData() {
     const decTxHash = pickAddr(decTxs);
     const seqF = pickAddr(seqFs);
     const seqL = pickAddr(seqLs);
-    const block = pickNum(10);
-    const order = pickNum(100);
-    const timestamp = index;
+    const block = pickNum(10).toString();
+    const order = pickNum(100).toString();
+    const timestamp = index.toString();
     const rollup = pickAddr(rollups);
     const rollOp = pickAddr(rollOps[rollup]);
-    const status = -1 + pickNum(3);
+    const status = pickAddr(statuses);
     const fee = `${pickNum(30001) / 100000000} ETH`;
 
     return {

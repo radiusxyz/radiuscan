@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     },
   },
   {
-    path: 'block',
+    path: 'block/:height',
     element: <BlockTxs />,
     loader: () => {
       window.scrollTo(0, 0);
