@@ -85,13 +85,13 @@ const Search = styled.div`
 
 const SearchInput = styled.input`
   border: none;
-  placeholder: Search...;
+  color: #5a9bb0;
   &:focus {
     outline: none;
   }
 `;
 
-const TopRight = styled.div`
+const HeadTopRight = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
@@ -208,18 +208,10 @@ const SeqF = styled(Cell)`
 const SeqL = styled(Cell)`
   flex: 0;
 `;
-const Block = styled(Cell)`
-  flex: 0;
-`;
-const Order = styled(Cell)`
-  flex: 0;
-`;
-const TimeStamp = styled(Cell)`
-  flex: 0;
-`;
-const Rollup = styled(Cell)`
-  flex: 0;
-`;
+const Block = styled(Cell)``;
+const Order = styled(Cell)``;
+const TimeStamp = styled(Cell)``;
+const Rollup = styled(Cell)``;
 const RollOp = styled(Cell)`
   flex: 0;
 `;
@@ -339,10 +331,10 @@ const Table = () => {
               <img src={add} />
               Add customer
             </AddCustomerBtn> */}
-          <TopRight>
+          <HeadTopRight>
             <Logo src={magnifier} />
             <Text>RADIUSCAN</Text>
-          </TopRight>
+          </HeadTopRight>
         </HeadTop>
         <HeadBottom>
           <HeaderText>User</HeaderText>
@@ -386,27 +378,14 @@ const Table = () => {
               <SeqL>{shorten(tx.seqL)}</SeqL>
               <Copy handler={() => handleCopy(tx.seqL)} />
             </CellWrapper>
-
-            <CellWrapper>
-              <Block>
-                <StyledLink to={`/block/${tx.block}`}>
-                  {tx.block}
-                </StyledLink>
-              </Block>
-            </CellWrapper>
-
-            <CellWrapper>
-              <Order>{tx.order}</Order>
-            </CellWrapper>
-
-            <CellWrapper>
-              <TimeStamp>{tx.timestamp}</TimeStamp>{' '}
-            </CellWrapper>
-
-            <CellWrapper>
-              <Rollup>{tx.rollup}</Rollup>
-            </CellWrapper>
-
+            <Block>
+              <StyledLink to={`/block/${tx.block}`}>
+                {tx.block}
+              </StyledLink>
+            </Block>
+            <Order>{tx.order}</Order>
+            <TimeStamp>{tx.timestamp}</TimeStamp>{' '}
+            <Rollup>{tx.rollup}</Rollup>
             <CellWrapper>
               <RollOp>{shorten(tx.rollOp)}</RollOp>
               <Copy handler={() => handleCopy(tx.rollOp)} />
