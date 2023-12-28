@@ -67,7 +67,7 @@ const FilterBtn = styled.button`
   cursor: pointer;
   &:hover {
     transform: scale(1.01);
-    filter: invert(75%);
+    background: lightblue;
   }
 `;
 const Search = styled.div`
@@ -208,10 +208,18 @@ const SeqF = styled(Cell)`
 const SeqL = styled(Cell)`
   flex: 0;
 `;
-const Block = styled(Cell)``;
-const Order = styled(Cell)``;
-const TimeStamp = styled(Cell)``;
-const Rollup = styled(Cell)``;
+const Block = styled(Cell)`
+  flex: 0;
+`;
+const Order = styled(Cell)`
+  flex: 0;
+`;
+const TimeStamp = styled(Cell)`
+  flex: 0;
+`;
+const Rollup = styled(Cell)`
+  flex: 0;
+`;
 const RollOp = styled(Cell)`
   flex: 0;
 `;
@@ -358,46 +366,51 @@ const Table = () => {
               <User>{shorten(tx.user)}</User>
               <Copy handler={() => handleCopy(tx.user)} />
             </CellWrapper>
-
             <CellWrapper>
               <EncTxHash>{shorten(tx.encTxHash)}</EncTxHash>
               <Copy
                 handler={() => handleCopy(tx.encTxHash)}
               />
             </CellWrapper>
-
             <CellWrapper>
               <DecTxHash>{shorten(tx.decTxHash)}</DecTxHash>
               <Copy
                 handler={() => handleCopy(tx.decTxHash)}
               />
             </CellWrapper>
-
             <CellWrapper>
               <SeqF>{shorten(tx.seqF)}</SeqF>
               <Copy handler={() => handleCopy(tx.seqF)} />
             </CellWrapper>
-
             <CellWrapper>
               <SeqL>{shorten(tx.seqL)}</SeqL>
               <Copy handler={() => handleCopy(tx.seqL)} />
             </CellWrapper>
 
-            <Block>
-              <StyledLink to={`/block/${tx.block}`}>
-                {tx.block}
-              </StyledLink>
-            </Block>
+            <CellWrapper>
+              <Block>
+                <StyledLink to={`/block/${tx.block}`}>
+                  {tx.block}
+                </StyledLink>
+              </Block>
+            </CellWrapper>
 
-            <Order>{tx.order}</Order>
-            <TimeStamp>{tx.timestamp}</TimeStamp>
-            <Rollup>{tx.rollup}</Rollup>
+            <CellWrapper>
+              <Order>{tx.order}</Order>
+            </CellWrapper>
+
+            <CellWrapper>
+              <TimeStamp>{tx.timestamp}</TimeStamp>{' '}
+            </CellWrapper>
+
+            <CellWrapper>
+              <Rollup>{tx.rollup}</Rollup>
+            </CellWrapper>
 
             <CellWrapper>
               <RollOp>{shorten(tx.rollOp)}</RollOp>
               <Copy handler={() => handleCopy(tx.rollOp)} />
             </CellWrapper>
-
             {(tx.status === 'fail' && (
               <Tag>
                 <TagText status={tx.status}>Fail</TagText>
