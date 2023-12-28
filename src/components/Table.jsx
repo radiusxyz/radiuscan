@@ -15,6 +15,8 @@ import Copy from './Copy';
 const StyledLink = styled(Link)`
   color: inherit;
   text-decoration: none;
+  border: none;
+  outline: none;
 `;
 
 const TableWrapper = styled.div`
