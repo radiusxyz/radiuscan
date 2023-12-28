@@ -283,6 +283,10 @@ const Table = () => {
   const txsCtx = useTxs();
   const [value, setValue] = useState('');
 
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text);
+  };
+
   const handleChange = (e) => {
     setValue(e.target.value.trim());
   };
@@ -318,7 +322,7 @@ const Table = () => {
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
               />
-            </Search>{' '}
+            </Search>
             <FilterBtn onClick={handleFilter}>
               <img src={filter} />
             </FilterBtn>
@@ -352,27 +356,31 @@ const Table = () => {
           <Row key={cuid()}>
             <CellWrapper>
               <User>{shorten(tx.user)}</User>
-              <Copy />
+              <Copy handler={() => handleCopy(tx.user)} />
             </CellWrapper>
 
             <CellWrapper>
               <EncTxHash>{shorten(tx.encTxHash)}</EncTxHash>
-              <Copy />
+              <Copy
+                handler={() => handleCopy(tx.encTxHash)}
+              />
             </CellWrapper>
 
             <CellWrapper>
               <DecTxHash>{shorten(tx.decTxHash)}</DecTxHash>
-              <Copy />
+              <Copy
+                handler={() => handleCopy(tx.decTxHash)}
+              />
             </CellWrapper>
 
             <CellWrapper>
               <SeqF>{shorten(tx.seqF)}</SeqF>
-              <Copy />
+              <Copy handler={() => handleCopy(tx.seqF)} />
             </CellWrapper>
 
             <CellWrapper>
               <SeqL>{shorten(tx.seqL)}</SeqL>
-              <Copy />
+              <Copy handler={() => handleCopy(tx.seqL)} />
             </CellWrapper>
 
             <Block>
@@ -380,12 +388,14 @@ const Table = () => {
                 {tx.block}
               </StyledLink>
             </Block>
+
             <Order>{tx.order}</Order>
             <TimeStamp>{tx.timestamp}</TimeStamp>
             <Rollup>{tx.rollup}</Rollup>
+
             <CellWrapper>
               <RollOp>{shorten(tx.rollOp)}</RollOp>
-              <Copy />
+              <Copy handler={() => handleCopy(tx.rollOp)} />
             </CellWrapper>
 
             {(tx.status === 'fail' && (
