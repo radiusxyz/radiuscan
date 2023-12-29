@@ -12,11 +12,9 @@ const TotalTxs = () => {
     'sequencer',
     'block',
     'order',
-    'age',
     'rollup',
     'operator',
     'status',
-    'fee',
   ];
 
   const entries = txs.map(
@@ -26,24 +24,19 @@ const TotalTxs = () => {
       decrypted,
       block,
       order,
-      timestamp,
-      leader,
       rollup,
       status,
-      fee,
     }) => {
       return {
         user,
         encrypted,
         decrypted,
-        sequencer: leader,
+        sequencer: block.sequencer,
         block: block.height,
         order,
-        age: timestamp,
         rollup: rollup.title,
         operator: rollup.operator,
         status,
-        fee,
       };
     }
   );

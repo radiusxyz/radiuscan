@@ -22,7 +22,6 @@ const BlockTxs = () => {
       ({
         encrypted,
         decrypted,
-        leader,
         order,
         status,
         seqSig,
@@ -32,8 +31,8 @@ const BlockTxs = () => {
           encrypted: encrypted,
           order,
           'sig for user': seqSig,
-          orderer: leader,
-          decrypted: decrypted,
+          orderer: block.sequencer,
+          decrypted,
           'sig for rollup': block.signature,
           status,
         };

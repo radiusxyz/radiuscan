@@ -104,22 +104,20 @@ const followers = [
   '0x255fAfc42E5939acB15BD310F9e74DedeD3e9a44',
 ];
 
-const leaders = [
-  '0x6514D59960CAcA398E51c3C8f9A515a44eB0CE5C',
-  '0x30400A149D97866B8a5a639e48e93A4E08A15705',
-];
-
 const blocks = [
   {
     height: '227185',
+    sequencer: '0x6514D59960CAcA398E51c3C8f9A515a44eB0CE5C',
     signature: '0x281055afc982d96fab65b3a49cac8b878184cb16',
   },
   {
     height: '205364',
+    sequencer: '0x30400A149D97866B8a5a639e48e93A4E08A15705',
     signature: '0x6f46cf5569aefa1acc1009290c8e043747172d89',
   },
   {
     height: '102032',
+    sequencer: '0x6514D59960CAcA398E51c3C8f9A515a44eB0CE5C',
     signature: '0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae',
   },
 ];
@@ -141,7 +139,7 @@ const rollups = [
   },
 ];
 
-let orders = new Array(100)
+let orders = new Array(encrypteds.length)
   .fill(0)
   .map((_, i) => String(i));
 const statuses = ['fail', 'pending', 'success'];
@@ -152,16 +150,13 @@ function useData() {
 
   const pickNum = (num) => Math.floor(Math.random() * num);
 
-  return encrypteds.map((_, index) => {
+  return encrypteds.map((_, index, arr) => {
     const user = pickMember(users);
     const encrypted = encrypteds[index];
     const decrypted = decrypteds[index];
     const seqSig = `ecdsa-${pickNum(9999)}`;
     const follower = pickMember(followers);
-    const leader = pickMember(leaders);
     const block = pickMember(blocks);
-    const height = block.height;
-    const blockSig = block.signature;
     const orderIndex = pickNum(orders.length);
     const order = orders[orderIndex];
     orders = orders.filter((_, i) => i !== orderIndex);
@@ -180,9 +175,12 @@ function useData() {
       encrypted,
       decrypted,
       follower,
-      leader,
       seqSig,
-      block: { height, signature: blockSig },
+      block: {
+        height: block.height,
+        signature: block.signature,
+        sequencer: block.sequencer,
+      },
       order,
       timestamp,
       rollup: { title, operator },
