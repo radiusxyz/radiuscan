@@ -18,7 +18,7 @@ const BlockTxs = () => {
   ];
 
   const entries = txs
-    .filter((tx) => tx.block === height)
+    .filter((tx) => tx.block.height === height)
     .map(
       ({
         encrypted,

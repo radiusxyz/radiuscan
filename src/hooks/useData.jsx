@@ -152,8 +152,6 @@ function useData() {
 
   const pickNum = (num) => Math.floor(Math.random() * num);
 
-  console.log(orders.pop(pickNum(orders.length)));
-
   return encrypteds.map((_, index) => {
     const user = pickMember(users);
     const encrypted = encrypteds[index];

@@ -20,7 +20,38 @@ const TotalTxs = () => {
     'fee',
   ];
 
-  return <Table headers={headers} entries={txs} />;
+  const entries = txs.map(
+    ({
+      user,
+      encrypted,
+      decrypted,
+      follower,
+      leader,
+      block,
+      order,
+      timestamp,
+      rollup,
+      status,
+      fee,
+    }) => {
+      return {
+        user,
+        encrypted,
+        decrypted,
+        follower,
+        leader,
+        block: block.height,
+        order,
+        age: timestamp,
+        rollup: rollup.title,
+        operator: rollup.operator,
+        status,
+        fee,
+      };
+    }
+  );
+
+  return <Table headers={headers} entries={entries} />;
 };
 
 export default TotalTxs;

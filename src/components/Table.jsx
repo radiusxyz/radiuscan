@@ -67,10 +67,11 @@ const CellText = styled.span`
   color: #2b8492;
 `;
 
-const TagText = styled(CellText)`
+const StatusText = styled(CellText)`
   display: flex;
   align-items: center;
   padding: 0 10px;
+  text-transform: capitalize;
   border-radius: 10px;
   font-size: 12px;
   line-height: 18px;
@@ -96,93 +97,48 @@ const Table = ({ headers, entries }) => {
   return (
     <Body>
       <HeaderRow>
-        {headers.map((header) => (
-          <HeaderText key={cuid()}>{header}</HeaderText>
-        ))}
+        {headers.map((header) => {
+          return (
+            <HeaderText key={cuid()}>{header}</HeaderText>
+          );
+        })}
       </HeaderRow>
-      {entries.map((tx) => (
-        <Row key={cuid()}>
-          <CellWrapper>
-            <CellText>{shorten(tx.user)}</CellText>
-            <Copy handler={() => handleCopy(tx.user)} />
-          </CellWrapper>
-
-          <CellWrapper>
-            <CellText>{shorten(tx.encrypted)}</CellText>
-            <Copy
-              handler={() => handleCopy(tx.encrypted)}
-            />
-          </CellWrapper>
-
-          <CellWrapper>
-            <CellText>{shorten(tx.decrypted)}</CellText>
-            <Copy
-              handler={() => handleCopy(tx.decrypted)}
-            />
-          </CellWrapper>
-
-          <CellWrapper>
-            <CellText>{shorten(tx.follower)}</CellText>
-            <Copy handler={() => handleCopy(tx.follower)} />
-          </CellWrapper>
-
-          <CellWrapper>
-            <CellText>{shorten(tx.leader)}</CellText>
-            <Copy handler={() => handleCopy(tx.leader)} />
-          </CellWrapper>
-
-          <CellWrapper>
-            <CellText>
-              <StyledLink to={`/block/${tx.block.height}`}>
-                {tx.block.height}
-              </StyledLink>
-            </CellText>
-          </CellWrapper>
-
-          <CellWrapper>
-            <CellText>{tx.order}</CellText>
-          </CellWrapper>
-          <CellWrapper>
-            <CellText>{tx.timestamp}</CellText>{' '}
-          </CellWrapper>
-
-          <CellWrapper>
-            <CellText>{tx.rollup.title}</CellText>{' '}
-          </CellWrapper>
-
-          <CellWrapper>
-            <CellText>
-              {shorten(tx.rollup.operator)}
-            </CellText>
-            <Copy
-              handler={() => handleCopy(tx.rollup.operator)}
-            />
-          </CellWrapper>
-
-          {(tx.status === 'fail' && (
-            <CellWrapper>
-              <TagText status={tx.status}>Fail</TagText>
-            </CellWrapper>
-          )) ||
-            (tx.status === 'pending' && (
-              <CellWrapper>
-                <TagText status={tx.status}>
-                  Pending
-                </TagText>
-              </CellWrapper>
-            )) ||
-            (tx.status === 'success' && (
-              <CellWrapper>
-                <TagText status={tx.status}>
-                  Success
-                </TagText>
-              </CellWrapper>
-            ))}
-          <CellWrapper>
-            <CellText>{tx.fee}</CellText>
-          </CellWrapper>
-        </Row>
-      ))}
+      {entries.map((tx) => {
+        return (
+          <Row key={cuid()}>
+            {headers.map((header) => {
+              return (
+                <CellWrapper key={cuid()}>
+                  {['fail', 'success', 'pending'].includes(
+                    tx[header]
+                  ) ? (
+                    <StatusText status={tx.status}>
+                      {tx.status}
+                    </StatusText>
+                  ) : (
+                    <>
+                      <CellText>
+                        <StyledLink
+                          to={`/${header}/${tx[header]}`}
+                        >
+                          {tx[header].length > 10
+                            ? shorten(tx[header])
+                            : tx[header]}
+                        </StyledLink>
+                      </CellText>
+                      <Copy
+                        handler={() =>
+                          handleCopy(tx[header])
+                        }
+                      />
+                    </>
+                  )}
+                </CellWrapper>
+              );
+            })}
+          </Row>
+        );
+      })}
     </Body>
   );
 };
