@@ -9,11 +9,10 @@ const BlockTxs = () => {
   const headers = [
     'encrypted',
     'order',
-    'signature for user',
-    'receiver',
+    'sig for user',
     'orderer',
     'decrypted',
-    'signature for rollup',
+    'sig for rollup',
     'status',
   ];
 
@@ -23,7 +22,6 @@ const BlockTxs = () => {
       ({
         encrypted,
         decrypted,
-        follower,
         leader,
         order,
         status,
@@ -33,11 +31,10 @@ const BlockTxs = () => {
         return {
           encrypted: encrypted,
           order,
-          'signature for user': seqSig,
-          receiver: follower,
+          'sig for user': seqSig,
           orderer: leader,
           decrypted: decrypted,
-          'signature for rollup': block.signature,
+          'sig for rollup': block.signature,
           status,
         };
       }

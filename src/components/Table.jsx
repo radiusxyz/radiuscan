@@ -121,7 +121,7 @@ const Table = ({ headers, entries }) => {
                         <StyledLink
                           to={`/${header}/${tx[header]}`}
                         >
-                          {tx[header].length > 10
+                          {tx[header].length > 14
                             ? shorten(tx[header])
                             : tx[header]}
                         </StyledLink>

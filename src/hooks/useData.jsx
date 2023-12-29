@@ -141,7 +141,7 @@ const rollups = [
   },
 ];
 
-const orders = new Array(100)
+let orders = new Array(100)
   .fill(0)
   .map((_, i) => String(i));
 const statuses = ['fail', 'pending', 'success'];
@@ -162,9 +162,9 @@ function useData() {
     const block = pickMember(blocks);
     const height = block.height;
     const blockSig = block.signature;
-    const order = orders.pop(pickNum(orders.length));
-
-    orders.filter((_, i) => i !== index);
+    const orderIndex = pickNum(orders.length);
+    const order = orders[orderIndex];
+    orders = orders.filter((_, i) => i !== orderIndex);
     const timestamp = index.toString();
     const rollup = pickMember(rollups);
     const title = rollup.title;
