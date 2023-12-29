@@ -1,46 +1,3 @@
-const decTxs = [
-  '0x705BA02F8883741B7bC9704777427eb909b3751f',
-  '0x84Ca2b1c1f7f043Dde531A428Fc765C6637A6f5e',
-  '0xE0bD1Da5a7A1F07d37445507370398f72689B1F7',
-  '0x6BAE181e7AAd23c124db01Bb31a17B4d2C5E2623',
-  '0x55c1644098A152417B7d933815bC2f6ca5626800',
-  '0x3bC7E42EB323c79CF8CaDE6351dE276D7cc62847',
-  '0x7661c0C98B4B122eaC5b9090F0B42037Fd98D0f8',
-  '0xc0249212d476E9C116cCAAe15923D9210d2C00b6',
-  '0x854F3503C167839a415b121002480721c36211Ac',
-  '0xD847C054A0D15A5Acd8bED3648BB8978Bb3D9ef1',
-  '0xc55530BF1124458725B1C5b3472c2190eE24cba6',
-  '0x7DD996d47bE8563E36649A90Eb730eDf9dAcf77a',
-  '0xa0Da6556173C7D8Ed2c8f9201AF4d03E51bc307d',
-  '0x7610EDC7FF8884eB5E8C178c5bAFe20520BCef92',
-  '0x543524DF01b271B37fc6e6ee9C15D375B67BFD25',
-  '0x8f8e40a5b94Ed89F0E1d1e16f03C26f4E3B67c4c',
-  '0xb8c08C9e1c442D45a6CC2F34ccEE524F77B9daB1',
-  '0x3f20D806825DE606aF28F56f0BFa19cAa315771A',
-  '0xD5CC49d69d2238D0fCFBf6a120F4dcE0cceb59d4',
-  '0xAaBb2181EF1CcdF25c9BA1013Fb805628204f1Be',
-  '0xd867a333b6B3F51955a57FB6fEFb5341f438309a',
-  '0x6A8079811D6AFf44F02891B1c342a9FB3f58d763',
-  '0xc73baC7d177ec91dEe33d2B4cE2FC9f16aC74f10',
-  '0x30471bf4A16046FE2b4cD325f0f718949864EC04',
-  '0x11B173e1DB1a0438a6BC8E3b678bD7e4F0F013b3',
-  '0x341dA9d48D7868e664Ee2e1500f0D38cce423bAe',
-  '0x79941148C4ea22c9Ac8B1d661a4D156C5a7b16B8',
-  '0x6051BC74D44Ee15fbeD729F7B2431EE5163bf9f6',
-  '0x53d6cE51dA8444f746Fb49d878Ba05F5edd91a88',
-  '0xEfeb6B559f255e999eF570c0cd35E6246C4f1253',
-  '0x41F82e1Aa813a976d2a5d0594a6B05bcfEC9194B',
-  '0x6ce0A5Da6a2aDfCA5506a785CF481d52c9ea9782',
-  '0x2C25bbda8BA3C44e25235A0B72B110c1eDB66429',
-  '0x8c6b58FA24b97dd34f0F95960bc03117316adB3F',
-  '0xA2A207b08C74E0a15176E717F30fD18DC54D263e',
-  '0x98eB05e8028d219BD8575abf93021141b558f714',
-  '0x722ba76FF54C930AE05cF8d567ebeC226110C1AD',
-  '0x287Ee7419A6a7b379D55facb59c530A3556EFcBd',
-  '0x0F415B200864E47F9f3715015344053679994e4D',
-  '0x8236BB2366d16074a48eAcA7F2De25f2B3009f52',
-];
-
 const users = [
   '0xF9b77fcf66edBC5aD6EC01368c760EE8Dfc1e697',
   '0xcB81aB3f5A81420e12f475904E2147a70b4F6682',
@@ -54,7 +11,7 @@ const users = [
   '0xe33023fe2E3576F69fE8B50ee8Ff280d0A3917D4',
 ];
 
-const encTxs = [
+const encrypteds = [
   '0x48390752a6c1ED8d5d25bDe85c0756DE2b85F278',
   '0xFA523EA3100f1BdC018b15b81A90eB79FFED01E5',
   '0x856205fddE2c5e7659685e91E4fbA64a240A929f',
@@ -97,64 +54,138 @@ const encTxs = [
   '0x695F79E34972915c849aF90FFb9a211BF603697f',
 ];
 
-const seqFs = [
+const decrypteds = [
+  '0x705BA02F8883741B7bC9704777427eb909b3751f',
+  '0x84Ca2b1c1f7f043Dde531A428Fc765C6637A6f5e',
+  '0xE0bD1Da5a7A1F07d37445507370398f72689B1F7',
+  '0x6BAE181e7AAd23c124db01Bb31a17B4d2C5E2623',
+  '0x55c1644098A152417B7d933815bC2f6ca5626800',
+  '0x3bC7E42EB323c79CF8CaDE6351dE276D7cc62847',
+  '0x7661c0C98B4B122eaC5b9090F0B42037Fd98D0f8',
+  '0xc0249212d476E9C116cCAAe15923D9210d2C00b6',
+  '0x854F3503C167839a415b121002480721c36211Ac',
+  '0xD847C054A0D15A5Acd8bED3648BB8978Bb3D9ef1',
+  '0xc55530BF1124458725B1C5b3472c2190eE24cba6',
+  '0x7DD996d47bE8563E36649A90Eb730eDf9dAcf77a',
+  '0xa0Da6556173C7D8Ed2c8f9201AF4d03E51bc307d',
+  '0x7610EDC7FF8884eB5E8C178c5bAFe20520BCef92',
+  '0x543524DF01b271B37fc6e6ee9C15D375B67BFD25',
+  '0x8f8e40a5b94Ed89F0E1d1e16f03C26f4E3B67c4c',
+  '0xb8c08C9e1c442D45a6CC2F34ccEE524F77B9daB1',
+  '0x3f20D806825DE606aF28F56f0BFa19cAa315771A',
+  '0xD5CC49d69d2238D0fCFBf6a120F4dcE0cceb59d4',
+  '0xAaBb2181EF1CcdF25c9BA1013Fb805628204f1Be',
+  '0xd867a333b6B3F51955a57FB6fEFb5341f438309a',
+  '0x6A8079811D6AFf44F02891B1c342a9FB3f58d763',
+  '0xc73baC7d177ec91dEe33d2B4cE2FC9f16aC74f10',
+  '0x30471bf4A16046FE2b4cD325f0f718949864EC04',
+  '0x11B173e1DB1a0438a6BC8E3b678bD7e4F0F013b3',
+  '0x341dA9d48D7868e664Ee2e1500f0D38cce423bAe',
+  '0x79941148C4ea22c9Ac8B1d661a4D156C5a7b16B8',
+  '0x6051BC74D44Ee15fbeD729F7B2431EE5163bf9f6',
+  '0x53d6cE51dA8444f746Fb49d878Ba05F5edd91a88',
+  '0xEfeb6B559f255e999eF570c0cd35E6246C4f1253',
+  '0x41F82e1Aa813a976d2a5d0594a6B05bcfEC9194B',
+  '0x6ce0A5Da6a2aDfCA5506a785CF481d52c9ea9782',
+  '0x2C25bbda8BA3C44e25235A0B72B110c1eDB66429',
+  '0x8c6b58FA24b97dd34f0F95960bc03117316adB3F',
+  '0xA2A207b08C74E0a15176E717F30fD18DC54D263e',
+  '0x98eB05e8028d219BD8575abf93021141b558f714',
+  '0x722ba76FF54C930AE05cF8d567ebeC226110C1AD',
+  '0x287Ee7419A6a7b379D55facb59c530A3556EFcBd',
+  '0x0F415B200864E47F9f3715015344053679994e4D',
+  '0x8236BB2366d16074a48eAcA7F2De25f2B3009f52',
+];
+
+const followers = [
   '0x28964BFBB7b2EE431d873d9A6302d9c9e5B22a55',
   '0x525B40A69f67Ce9939F69EC0CDa00B830c2fF9bF',
   '0xD81Bac23aa1E4e75080d7C5a7D52F8D8f41144c4',
   '0x255fAfc42E5939acB15BD310F9e74DedeD3e9a44',
 ];
 
-const seqLs = [
+const leaders = [
   '0x6514D59960CAcA398E51c3C8f9A515a44eB0CE5C',
   '0x30400A149D97866B8a5a639e48e93A4E08A15705',
 ];
 
-const rollups = ['altlayer', 'starknet'];
+const blocks = [
+  {
+    height: '227185',
+    signature: '0x281055afc982d96fab65b3a49cac8b878184cb16',
+  },
+  {
+    height: '205364',
+    signature: '0x6f46cf5569aefa1acc1009290c8e043747172d89',
+  },
+  {
+    height: '102032',
+    signature: '0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae',
+  },
+];
 
-const rollOps = {
-  altlayer: [
-    '0xF46071eA2EC96eE382351B9ac2157B945AaAF91b',
-    '0x983D3a6B11289998FB691C16aA6B40846b5dE537',
-  ],
-  starknet: [
-    '0xcf8f24EB55736270e1D1B907bf1e589062998572',
-    '0xd3B094E9F0B5F6d25833f0138AE4846442eDA273',
-  ],
-};
+const rollups = [
+  {
+    title: 'altlayer',
+    operators: [
+      '0xF46071eA2EC96eE382351B9ac2157B945AaAF91b',
+      '0x983D3a6B11289998FB691C16aA6B40846b5dE537',
+    ],
+  },
+  {
+    title: 'starknet',
+    operators: [
+      '0xcf8f24EB55736270e1D1B907bf1e589062998572',
+      '0xd3B094E9F0B5F6d25833f0138AE4846442eDA273',
+    ],
+  },
+];
 
+const orders = new Array(100)
+  .fill(0)
+  .map((_, i) => String(i));
 const statuses = ['fail', 'pending', 'success'];
 
 function useData() {
-  const pickAddr = (arr) =>
+  const pickMember = (arr) =>
     arr[Math.floor(Math.random() * arr.length)];
 
   const pickNum = (num) => Math.floor(Math.random() * num);
 
-  return decTxs.map((_, index) => {
-    const user = pickAddr(users);
-    const encTxHash = pickAddr(encTxs);
-    const decTxHash = pickAddr(decTxs);
-    const seqF = pickAddr(seqFs);
-    const seqL = pickAddr(seqLs);
-    const block = pickNum(10).toString();
-    const order = pickNum(100).toString();
+  return encrypteds.map((_, index) => {
+    const user = pickMember(users);
+    const encrypted = encrypteds[index];
+    const decrypted = decrypteds[index];
+    const seqSig = `ecdsa-${pickNum(9999)}`;
+    const follower = pickMember(followers);
+    const leader = pickMember(leaders);
+    const block = pickMember(blocks);
+    const height = block.height;
+    const blockSig = block.signature;
+    const order = orders.pop(pickNum(orders.length));
+
+    orders.filter((_, i) => i !== index);
     const timestamp = index.toString();
-    const rollup = pickAddr(rollups);
-    const rollOp = pickAddr(rollOps[rollup]);
-    const status = pickAddr(statuses);
-    const fee = `${pickNum(30001) / 100000000} ETH`;
+    const rollup = pickMember(rollups);
+    const title = rollup.title;
+    const operator = pickMember(rollup.operators);
+    const status = pickMember(statuses);
+    const fee = `0.${String(pickNum(9999)).padStart(
+      8,
+      '0'
+    )} ETH`;
 
     return {
       user,
-      encTxHash,
-      decTxHash,
-      seqF,
-      seqL,
-      block,
+      encrypted,
+      decrypted,
+      follower,
+      leader,
+      seqSig,
+      block: { height, signature: blockSig },
       order,
       timestamp,
-      rollup,
-      rollOp,
+      rollup: { title, operator },
       status,
       fee,
     };

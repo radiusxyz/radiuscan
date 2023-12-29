@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import TotalTxs from './pages/TotalTxs';
 import BlockTxs from './pages/BlockTxs';
+import RootLayout from './pages/RootLayout';
 // import { ethers } from 'ethers';
 
 // (async () => {
@@ -18,21 +19,35 @@ import BlockTxs from './pages/BlockTxs';
 
 const router = createBrowserRouter([
   {
-    index: true,
     path: '/',
-    element: <TotalTxs />,
-    loader: () => {
-      window.scrollTo(0, 0);
-      return null;
-    },
-  },
-  {
-    path: 'block/:height',
-    element: <BlockTxs />,
-    loader: () => {
-      window.scrollTo(0, 0);
-      return null;
-    },
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        path: '/',
+        element: <TotalTxs />,
+        loader: () => {
+          window.scrollTo(0, 0);
+          return null;
+        },
+      },
+      {
+        path: 'user/:address',
+        element: <BlockTxs />,
+        loader: () => {
+          window.scrollTo(0, 0);
+          return null;
+        },
+      },
+      {
+        path: 'block/:height',
+        element: <BlockTxs />,
+        loader: () => {
+          window.scrollTo(0, 0);
+          return null;
+        },
+      },
+    ],
   },
 ]);
 
