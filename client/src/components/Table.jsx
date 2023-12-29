@@ -89,11 +89,11 @@ const StatusText = styled(CellText)`
 const shorten = (ethAddr) =>
   ethAddr.slice(0, 5) + '...' + ethAddr.slice(-3);
 
-const Table = ({ headers, entries }) => {
-  const handleCopy = (text) => {
-    navigator.clipboard.writeText(text);
-  };
+const handleCopy = (text) => {
+  navigator.clipboard.writeText(text);
+};
 
+const Table = ({ headers, entries }) => {
   return (
     <Body>
       <HeaderRow>
