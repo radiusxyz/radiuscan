@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import Table from '../components/Table';
 import { useTxs } from '../contexts/TxsContext';
 import axios from 'axios';
+import Loader from '../components/Loader';
 
 const BlockTxs = () => {
   const { height } = useParams();
@@ -54,12 +55,17 @@ const BlockTxs = () => {
           `http://localhost:3333/rollup/block/${blockNumber}`
         );
         setData(response.data);
-        console.log(response.data);
         setEntries((prevState) => {
-          return prevState.map((entry, index) => ({
-            ...entry,
-            rolex: response.data[index].decrypted,
-          }));
+          return prevState.map((entry, index) => {
+            return {
+              ...entry,
+              rolex: response.data[index].decrypted,
+              orderMismatch:
+                response.data[index].decrypted !==
+                entry.decrypted,
+              order: index,
+            };
+          });
         });
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -71,7 +77,7 @@ const BlockTxs = () => {
   }, []); // Empty dependency array means this runs once after the component mounts
 
   if (error) return 'An error occurred.';
-  if (!data) return 'Loading...';
+  if (!data) return <Loader />;
 
   return <Table headers={headers} entries={entries} />;
 };
