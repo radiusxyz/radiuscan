@@ -108,7 +108,6 @@ const Table = ({ headers, entries }) => {
         })}
       </HeaderRow>
       {entries.map((tx, index) => {
-        console.log(index, tx.orderMismatch);
         return (
           <Row
             key={cuid()}

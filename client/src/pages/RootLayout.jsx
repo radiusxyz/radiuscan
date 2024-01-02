@@ -152,7 +152,15 @@ const RootLayout = () => {
     }
     txsCtx.handleTxs(() =>
       txsCtx.data.filter((tx) => {
-        return Object.values(tx).includes(value);
+        return (
+          Object.values(tx).includes(value) ||
+          Object.values(Object.values(tx.block)).includes(
+            value
+          ) ||
+          Object.values(Object.values(tx.rollup)).includes(
+            value
+          )
+        );
       })
     );
   };
