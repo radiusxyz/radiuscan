@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
-import filter from '../assets/images/filter.svg';
-import search from '../assets/images/search.svg';
-import magnifier from '../assets/images/magnifier.svg';
-import Arrow from '../components/Arrow';
-import { Outlet } from 'react-router';
+import filter from "../assets/images/filter.svg";
+import search from "../assets/images/search.svg";
+import magnifier from "../assets/images/magnifier.svg";
+import Arrow from "../components/Arrow";
+import { Outlet } from "react-router";
 
 const TableWrapper = styled.div`
   display: flex;
@@ -48,8 +48,7 @@ const FilterBtn = styled.button`
   align-items: center;
   border-radius: 6px;
   background: var(--White, #fff);
-  box-shadow: 0px 2px 5px 0px rgba(89, 96, 120, 0.1),
-    0px 0px 0px 1px rgba(70, 79, 96, 0.16),
+  box-shadow: 0px 2px 5px 0px rgba(89, 96, 120, 0.1), 0px 0px 0px 1px rgba(70, 79, 96, 0.16),
     0px 1px 1px 0px rgba(0, 0, 0, 0.1);
   padding: 8px 12px;
   cursor: pointer;
@@ -64,8 +63,7 @@ const Search = styled.div`
   align-items: center;
   border-radius: 6px;
   background: var(--White, #fff);
-  box-shadow: 0px 0px 0px 1px rgba(104, 113, 130, 0.16),
-    0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 0px 0px 1px rgba(104, 113, 130, 0.16), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
   padding: 6px 12px;
   max-width: 320px;
   width: 100%;
@@ -137,7 +135,7 @@ const RightArr = styled.div`
 `;
 
 const RootLayout = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const handleChange = (e) => {
     setValue(e.target.value.trim());
   };
@@ -155,7 +153,7 @@ const RootLayout = () => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       handleFilter();
     }
   };
@@ -167,12 +165,7 @@ const RootLayout = () => {
           <HeadTopLeft>
             <Search>
               <img src={search} />
-              <SearchInput
-                placeholder='Search...'
-                value={value}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-              />
+              <SearchInput placeholder='Search...' value={value} onChange={handleChange} onKeyDown={handleKeyDown} />
             </Search>
             <FilterBtn onClick={handleFilter}>
               <img src={filter} />
@@ -180,7 +173,7 @@ const RootLayout = () => {
           </HeadTopLeft>
           <HeadTopRight>
             <Logo src={magnifier} />
-            <Text>RADIUSCAN</Text>
+            <Text>RADIUSDASHBOARD</Text>
           </HeadTopRight>
         </HeadTop>
       </Head>
