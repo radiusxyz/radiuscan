@@ -41,7 +41,11 @@ const Row = styled.div`
   width: 100%;
   &:nth-child(even) {
     background: #ffffff;
+    background: ${(props) =>
+      props.orderMismatch === true && 'pink'};
   }
+  background: ${(props) =>
+    props.orderMismatch === true && 'pink'};
 `;
 
 const HeaderRow = styled(Row)`
@@ -103,9 +107,12 @@ const Table = ({ headers, entries }) => {
           );
         })}
       </HeaderRow>
-      {entries.map((tx) => {
+      {entries.map((tx, index) => {
         return (
-          <Row key={cuid()}>
+          <Row
+            key={cuid()}
+            orderMismatch={tx.orderMismatch}
+          >
             {headers.map((header) => {
               return (
                 <CellWrapper key={cuid()}>

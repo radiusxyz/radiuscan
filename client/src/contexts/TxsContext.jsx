@@ -11,8 +11,8 @@ export const TxsContext = createContext({
   handleTxs: () => {},
 });
 
-export const useTxs = () => useContext(TxsContext);
 const data = useData();
+export const useTxs = () => useContext(TxsContext);
 
 export const TxsProvider = ({ children }) => {
   const [txs, setTxs] = useState(data);

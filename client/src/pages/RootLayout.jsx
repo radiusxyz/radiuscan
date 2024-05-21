@@ -6,13 +6,14 @@ import search from '../assets/images/search.svg';
 import magnifier from '../assets/images/magnifier.svg';
 import Arrow from '../components/Arrow';
 import { Outlet } from 'react-router';
+import { useTxs } from '../contexts/TxsContext';
 
 const TableWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: #d6ebf2;
   backdrop-filter: blur(4px);
@@ -138,6 +139,8 @@ const RightArr = styled.div`
 
 const RootLayout = () => {
   const [value, setValue] = useState('');
+  const txsCtx = useTxs();
+
   const handleChange = (e) => {
     setValue(e.target.value.trim());
   };
@@ -149,7 +152,15 @@ const RootLayout = () => {
     }
     txsCtx.handleTxs(() =>
       txsCtx.data.filter((tx) => {
-        return Object.values(tx).includes(value);
+        return (
+          Object.values(tx).includes(value) ||
+          Object.values(Object.values(tx.block)).includes(
+            value
+          ) ||
+          Object.values(Object.values(tx.rollup)).includes(
+            value
+          )
+        );
       })
     );
   };
