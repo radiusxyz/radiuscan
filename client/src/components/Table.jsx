@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
-import cuid from 'cuid';
-import { useTxs } from '../contexts/TxsContext';
-import { Link } from 'react-router-dom';
-import Copy from './Copy';
+import cuid from "cuid";
+import { Link } from "react-router-dom";
+import Copy from "./Copy";
 
 const StyledLink = styled(Link)`
   color: inherit;
@@ -77,17 +76,16 @@ const StatusText = styled(CellText)`
   line-height: 18px;
   letter-spacing: 0.36px;
   background: ${({ status }) =>
-    (status === 'fail' && 'var(--Red-0, #FAF0F3)') ||
-    (status === 'pending' && 'rgba(214, 162, 67, 0.12)') ||
-    (status === 'success' && 'var(--Green-0, #E1FCEF)')};
+    (status === "fail" && "var(--Red-0, #FAF0F3)") ||
+    (status === "pending" && "rgba(214, 162, 67, 0.12)") ||
+    (status === "success" && "var(--Green-0, #E1FCEF)")};
   color: ${({ status }) =>
-    (status === 'fail' && 'var(--Red-500, #D12953)') ||
-    (status === 'pending' && '#D6A243') ||
-    (status === 'success' && 'var(--Green-500, #14804A)')};
+    (status === "fail" && "var(--Red-500, #D12953)") ||
+    (status === "pending" && "#D6A243") ||
+    (status === "success" && "var(--Green-500, #14804A)")};
 `;
 
-const shorten = (ethAddr) =>
-  ethAddr.slice(0, 5) + '...' + ethAddr.slice(-3);
+const shorten = (ethAddr) => ethAddr.slice(0, 5) + "..." + ethAddr.slice(-3);
 
 const handleCopy = (text) => {
   navigator.clipboard.writeText(text);
@@ -98,9 +96,7 @@ const Table = ({ headers, entries }) => {
     <Body>
       <HeaderRow>
         {headers.map((header) => {
-          return (
-            <HeaderText key={cuid()}>{header}</HeaderText>
-          );
+          return <HeaderText key={cuid()}>{header}</HeaderText>;
         })}
       </HeaderRow>
       {entries.map((tx) => {
@@ -109,28 +105,16 @@ const Table = ({ headers, entries }) => {
             {headers.map((header) => {
               return (
                 <CellWrapper key={cuid()}>
-                  {['fail', 'success', 'pending'].includes(
-                    tx[header]
-                  ) ? (
-                    <StatusText status={tx.status}>
-                      {tx.status}
-                    </StatusText>
+                  {["fail", "success", "pending"].includes(tx[header]) ? (
+                    <StatusText status={tx.status}>{tx.status}</StatusText>
                   ) : (
                     <>
                       <CellText>
-                        <StyledLink
-                          to={`/${header}/${tx[header]}`}
-                        >
-                          {tx[header].length > 14
-                            ? shorten(tx[header])
-                            : tx[header]}
+                        <StyledLink to={`/${header}/${tx[header]}`}>
+                          {tx[header].length > 14 ? shorten(tx[header]) : tx[header]}
                         </StyledLink>
                       </CellText>
-                      <Copy
-                        handler={() =>
-                          handleCopy(tx[header])
-                        }
-                      />
+                      <Copy handler={() => handleCopy(tx[header])} />
                     </>
                   )}
                 </CellWrapper>

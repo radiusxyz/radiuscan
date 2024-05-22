@@ -1,10 +1,6 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useState } from "react";
 
-import useData from '../hooks/useData';
+import useData from "../hooks/useData";
 
 export const TxsContext = createContext({
   txs: [],
@@ -21,9 +17,5 @@ export const TxsProvider = ({ children }) => {
     setTxs(handler);
   };
 
-  return (
-    <TxsContext.Provider value={{ data, txs, handleTxs }}>
-      {children}
-    </TxsContext.Provider>
-  );
+  return <TxsContext.Provider value={{ data, txs, handleTxs }}>{children}</TxsContext.Provider>;
 };

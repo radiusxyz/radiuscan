@@ -5,21 +5,20 @@ import { useTxs } from "../contexts/TxsContext";
 const TotalTxs = () => {
   const { txs } = useTxs();
 
-  const headers = ["role", "address", "block", "age", "submitted to l1/aggregator"];
+  const headers = ["role", "address", "block", "timestamp", "status", "reward"];
 
-  const entries = txs.map(({ user, encrypted, decrypted, block, order, rollup, status }) => {
+  const entries = txs.map(({ role, address, block, timestamp, status, reward }) => {
     return {
-      user,
-      encrypted,
-      decrypted,
-      sequencer: block.sequencer,
+      role,
+      address,
       block: block.height,
-      order,
-      rollup: rollup.title,
-      operator: rollup.operator,
+      timestamp,
       status,
+      reward,
     };
   });
+
+  console.log(entries);
 
   return <Table headers={headers} entries={entries} />;
 };
