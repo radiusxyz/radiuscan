@@ -103,10 +103,11 @@ const Table = ({ headers, entries }) => {
         return (
           <Row key={cuid()}>
             {headers.map((header) => {
+              console.log("here", tx[header]);
               return (
                 <CellWrapper key={cuid()}>
                   {["fail", "success", "pending"].includes(tx[header]) ? (
-                    <StatusText status={tx.status}>{tx.status}</StatusText>
+                    <StatusText status={tx["submission status"]}>{tx["submission status"]}</StatusText>
                   ) : (
                     <>
                       <CellText>

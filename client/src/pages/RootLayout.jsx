@@ -83,9 +83,9 @@ const Address = styled.p`
   color: #5a9bb0;
   border-radius: 10px;
   background: white;
-  font-weight: bold;
-  padding: 5px 10px;
-  border: 3px solid #5a9bb0;
+
+  padding: 10px 20px;
+  box-shadow: 0px 0px 0px 1px rgba(104, 113, 130, 0.16), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
 `;
 
 const HeadTopRight = styled.div`
@@ -184,10 +184,10 @@ const RootLayout = () => {
               <img src={filter} />
             </FilterBtn>
           </HeadTopLeft>
-          <Address>Node: {txs[0].address}</Address>
+          <Address>{txs[0].address}</Address>
           <HeadTopRight>
             <Logo src={magnifier} />
-            <Text>RADIUSCAN</Text>
+            <Text>RADISHBOARD</Text>
           </HeadTopRight>
         </HeadTop>
       </Head>
