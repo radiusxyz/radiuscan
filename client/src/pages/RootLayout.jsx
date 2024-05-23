@@ -6,6 +6,7 @@ import search from "../assets/images/search.svg";
 import magnifier from "../assets/images/magnifier.svg";
 import Arrow from "../components/Arrow";
 import { Outlet } from "react-router";
+import { useTxs } from "../contexts/TxsContext";
 
 const TableWrapper = styled.div`
   display: flex;
@@ -75,6 +76,16 @@ const SearchInput = styled.input`
   &:focus {
     outline: none;
   }
+`;
+
+const Address = styled.p`
+  font-size: 22px;
+  color: #5a9bb0;
+  border-radius: 10px;
+  background: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: 3px solid #5a9bb0;
 `;
 
 const HeadTopRight = styled.div`
@@ -158,6 +169,8 @@ const RootLayout = () => {
     }
   };
 
+  const { txs } = useTxs();
+
   return (
     <TableWrapper>
       <Head>
@@ -171,9 +184,10 @@ const RootLayout = () => {
               <img src={filter} />
             </FilterBtn>
           </HeadTopLeft>
+          <Address>Node: {txs[0].address}</Address>
           <HeadTopRight>
             <Logo src={magnifier} />
-            <Text>RADIUSDASHBOARD</Text>
+            <Text>RADIUSCAN</Text>
           </HeadTopRight>
         </HeadTop>
       </Head>

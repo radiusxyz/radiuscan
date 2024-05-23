@@ -5,16 +5,17 @@ import { useTxs } from "../contexts/TxsContext";
 const TotalTxs = () => {
   const { txs } = useTxs();
 
-  const headers = ["role", "address", "block", "timestamp", "status", "reward"];
+  const headers = ["role", "block", "timestamp", "status", "reward", "leader", "violation"];
 
-  const entries = txs.map(({ role, address, block, timestamp, status, reward }) => {
+  const entries = txs.map(({ role, block }) => {
     return {
       role,
-      address,
       block: block.height,
-      timestamp,
-      status,
-      reward,
+      timestamp: block.timestamp,
+      status: block.status,
+      reward: block.reward,
+      violation: block.violation,
+      leader: block.leader,
     };
   });
 
