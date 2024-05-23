@@ -109,6 +109,16 @@ const HeadBottom = styled.div`
   width: 100%;
 `;
 
+const Graph = styled.div`
+  height: 500px;
+  width: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid green;
+`;
+
 const Footer = styled.div`
   display: flex;
   justify-content: center;
@@ -191,6 +201,8 @@ const RootLayout = () => {
           </HeadTopRight>
         </HeadTop>
       </Head>
+      <Graph>Here is going to be reward graph, x-axis block heights, why axis, reward amount</Graph>
+      <Graph>Here is going to be information about latest block, its hash, timestamp</Graph>
       <Outlet />
       <Footer>
         <Pagination>

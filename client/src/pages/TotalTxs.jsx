@@ -7,6 +7,8 @@ const TotalTxs = () => {
 
   const headers = ["role", "block", "timestamp", "submission status", "reward", "leader", "violation"];
 
+  console.log(txs);
+
   const entries = txs.map(({ role, block }) => {
     return {
       role,
