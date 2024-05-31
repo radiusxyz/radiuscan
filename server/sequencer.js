@@ -522,12 +522,14 @@ function generateRandomData() {
     "0xBBB4BFBB7b2EE431d873d9A6302d9c9e5B22a55",
     "0xLLL64BFBB7b2EE431d873d9A6302d9c9e5B22a55",
   ];
+  const nodeAddress = "0xAAA64BFBB7b2EE431d873d9A6302d9c9e5B22a55";
+  const leaderAddress = nodeAddresses[Math.floor(Math.random() * roles.length)];
 
   return {
-    role: roles[Math.floor(Math.random() * roles.length)],
+    role: leader === nodeAddress ? "leader" : "follower",
     blockHeight: Math.floor(Math.random() * 10000), // Example: up to 10,000 blocks
-    leaderAddress: `0xLLL64BFBB7b2EE431d873d9A6302d9c9e5B22a55`, // Simulated Ethereum address
-    nodeAddress: nodeAddresses[Math.floor(Math.random() * roles.length)], // Simulated Ethereum address
+    nodeAddress: nodeAddress, // Simulated Ethereum address
+    leaderAddress: leaderAddress, // Simulated Ethereum address
     status: statuses[Math.floor(Math.random() * statuses.length)],
     reward: Math.floor(Math.random() * 500), // Example: up to 500 units
   };
