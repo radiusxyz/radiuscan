@@ -517,11 +517,17 @@ app.get("/blocks", (req, res) => {
 function generateRandomData() {
   const roles = ["leader", "follower"];
   const statuses = ["success", "fail"];
+  const nodeAddresses = [
+    "0xAAA64BFBB7b2EE431d873d9A6302d9c9e5B22a55",
+    "0xBBB4BFBB7b2EE431d873d9A6302d9c9e5B22a55",
+    "0xLLL64BFBB7b2EE431d873d9A6302d9c9e5B22a55",
+  ];
 
   return {
     role: roles[Math.floor(Math.random() * roles.length)],
     blockHeight: Math.floor(Math.random() * 10000), // Example: up to 10,000 blocks
-    walletAddress: `0x${Math.random().toString(16).substr(2, 8)}`, // Simulated Ethereum address
+    leaderAddress: `0xLLL64BFBB7b2EE431d873d9A6302d9c9e5B22a55`, // Simulated Ethereum address
+    nodeAddress: nodeAddresses[Math.floor(Math.random() * roles.length)], // Simulated Ethereum address
     status: statuses[Math.floor(Math.random() * statuses.length)],
     reward: Math.floor(Math.random() * 500), // Example: up to 500 units
   };
@@ -530,7 +536,7 @@ function generateRandomData() {
 setInterval(async () => {
   const data = generateRandomData();
 
-  const influxData = `node_metrics,role=${data.role},walletAddress=${data.walletAddress},status=${data.status} blockHeight=${data.blockHeight},reward=${data.reward}`;
+  const influxData = `node_metrics,role=${data.role},nodeAddress=${data.nodeAddress},leaderAddress=${data.leaderAddress},status=${data.status} blockHeight=${data.blockHeight},reward=${data.reward}`;
 
   try {
     console.log(influxData);
