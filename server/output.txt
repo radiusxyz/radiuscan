@@ -1,0 +1,156 @@
+
+> sequencer@1.0.0 start
+> nodemon sequencer.js
+
+[33m[nodemon] 3.0.1[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node sequencer.js`[39m
+is running on port:  3333
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0x377dfff8', status: 'fail' },
+  fields: { blockHeight: 7791, reward: 0 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0xb99bde3d', status: 'success' },
+  fields: { blockHeight: 1929, reward: 315 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0xf3194b6f', status: 'fail' },
+  fields: { blockHeight: 3865, reward: 206 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0x41063965', status: 'success' },
+  fields: { blockHeight: 8967, reward: 486 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0x99fd5e54', status: 'fail' },
+  fields: { blockHeight: 1570, reward: 193 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0xb1e17f35', status: 'fail' },
+  fields: { blockHeight: 8067, reward: 53 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0xf1b7b95e', status: 'success' },
+  fields: { blockHeight: 4777, reward: 208 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0xac127e71', status: 'fail' },
+  fields: { blockHeight: 816, reward: 351 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0x9b8cfe90', status: 'fail' },
+  fields: { blockHeight: 4282, reward: 362 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0xc7d166fb', status: 'success' },
+  fields: { blockHeight: 5717, reward: 66 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0xd6c8081e', status: 'fail' },
+  fields: { blockHeight: 838, reward: 354 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0x8b63f3fd', status: 'fail' },
+  fields: { blockHeight: 3204, reward: 294 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0x2ad3809c', status: 'fail' },
+  fields: { blockHeight: 6580, reward: 319 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0x9a52aab2', status: 'fail' },
+  fields: { blockHeight: 8821, reward: 355 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0x8c6d6c29', status: 'fail' },
+  fields: { blockHeight: 7423, reward: 61 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0xfcf1b586', status: 'success' },
+  fields: { blockHeight: 125, reward: 325 }
+}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node sequencer.js`[39m
+is running on port:  3333
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0x4fe6a89b', status: 'success' },
+  fields: { blockHeight: 9240, reward: 379 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0xf15d9462', status: 'fail' },
+  fields: { blockHeight: 4213, reward: 99 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0x3826f70f', status: 'fail' },
+  fields: { blockHeight: 2752, reward: 71 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0x5f48de2d', status: 'success' },
+  fields: { blockHeight: 4080, reward: 437 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0x689bc25e', status: 'success' },
+  fields: { blockHeight: 4239, reward: 274 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0x76556960', status: 'fail' },
+  fields: { blockHeight: 8170, reward: 274 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0x0c663f87', status: 'fail' },
+  fields: { blockHeight: 5714, reward: 115 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0x3481bc41', status: 'fail' },
+  fields: { blockHeight: 3879, reward: 489 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0x38a4dd63', status: 'fail' },
+  fields: { blockHeight: 3405, reward: 32 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0x78a6c7e8', status: 'fail' },
+  fields: { blockHeight: 4301, reward: 372 }
+}
+{
+  measurement: 'node_metrics',
+  tags: { role: 'leader', walletAddress: '0xed148083', status: 'success' },
+  fields: { blockHeight: 5235, reward: 468 }
+}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node sequencer.js`[39m
+is running on port:  3333
+{
+  measurement: 'node_metrics',
+  tags: { role: 'follower', walletAddress: '0x411e7461', status: 'fail' },
+  fields: { blockHeight: 8498, reward: 115 }
+}

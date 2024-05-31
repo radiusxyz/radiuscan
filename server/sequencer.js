@@ -514,6 +514,51 @@ app.get("/blocks", (req, res) => {
   res.json(response.entries);
 });
 
+function generateRandomData() {
+  const roles = ["leader", "follower"];
+  const statuses = ["success", "fail"];
+
+  return {
+    role: roles[Math.floor(Math.random() * roles.length)],
+    blockHeight: Math.floor(Math.random() * 10000), // Example: up to 10,000 blocks
+    walletAddress: `0x${Math.random().toString(16).substr(2, 8)}`, // Simulated Ethereum address
+    status: statuses[Math.floor(Math.random() * statuses.length)],
+    reward: Math.floor(Math.random() * 500), // Example: up to 500 units
+  };
+}
+
+setInterval(async () => {
+  const data = generateRandomData();
+
+  const influxData = `node_metrics,role=${data.role},walletAddress=${data.walletAddress},status=${data.status} blockHeight=${data.blockHeight},reward=${data.reward}`;
+
+  try {
+    console.log(influxData);
+
+    await axios.post("http://localhost:8080/telegraf", influxData, {
+      headers: {
+        "Content-Type": "text/plain",
+        "Accept": "application/json",
+      },
+    });
+    console.log("Data sent:", influxData);
+  } catch (error) {
+    if (error.response) {
+      // Server responded with a status other than 2xx
+      console.error("Error response data:", error.response.data);
+      console.error("Error response status:", error.response.status);
+      console.error("Error response headers:", error.response.headers);
+    } else if (error.request) {
+      // No response was received
+      console.error("Error request:", error.request);
+    } else {
+      // Something happened in setting up the request
+      console.error("Error message:", error.message);
+    }
+    console.error("Error config:", error.config);
+  }
+}, 5000);
+
 app.listen(PORT, () => {
   console.log("is running on port: ", PORT);
 });
