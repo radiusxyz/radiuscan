@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
-import filter from '../assets/images/filter.svg';
-import search from '../assets/images/search.svg';
-import magnifier from '../assets/images/magnifier.svg';
-import Arrow from '../components/Arrow';
-import { Outlet } from 'react-router';
+import filter from "../assets/images/filter.svg";
+import search from "../assets/images/search.svg";
+import magnifier from "../assets/images/magnifier.svg";
+import Arrow from "../components/Arrow";
+import { Outlet } from "react-router";
 
 const TableWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: #d6ebf2;
   backdrop-filter: blur(4px);
@@ -49,8 +49,7 @@ const FilterBtn = styled.button`
   border-radius: 6px;
   background: var(--White, #fff);
   box-shadow: 0px 2px 5px 0px rgba(89, 96, 120, 0.1),
-    0px 0px 0px 1px rgba(70, 79, 96, 0.16),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.1);
+    0px 0px 0px 1px rgba(70, 79, 96, 0.16), 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
   padding: 8px 12px;
   cursor: pointer;
   &:hover {
@@ -137,7 +136,7 @@ const RightArr = styled.div`
 `;
 
 const RootLayout = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const handleChange = (e) => {
     setValue(e.target.value.trim());
   };
@@ -155,7 +154,7 @@ const RootLayout = () => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       handleFilter();
     }
   };
@@ -168,7 +167,7 @@ const RootLayout = () => {
             <Search>
               <img src={search} />
               <SearchInput
-                placeholder='Search...'
+                placeholder="Search..."
                 value={value}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
@@ -180,7 +179,7 @@ const RootLayout = () => {
           </HeadTopLeft>
           <HeadTopRight>
             <Logo src={magnifier} />
-            <Text>RADIUSCAN</Text>
+            <Text>RADIUS</Text>
           </HeadTopRight>
         </HeadTop>
       </Head>

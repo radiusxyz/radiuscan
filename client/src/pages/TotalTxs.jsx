@@ -1,47 +1,41 @@
-import React from 'react';
-import Table from '../components/Table';
-import { useTxs } from '../contexts/TxsContext';
+import React from "react";
+import Table from "../components/Table";
+import { useTxs } from "../contexts/TxsContext";
+import styled from "styled-components";
 
+const Container = styled.div`
+  display: flex;
+  gap: 10px;
+  width: 100%;
+`;
 const TotalTxs = () => {
   const { txs } = useTxs();
 
-  const headers = [
-    'user',
-    'encrypted',
-    'decrypted',
-    'sequencer',
-    'block',
-    'order',
-    'rollup',
-    'operator',
-    'status',
-  ];
+  const rollup_headers = ["address", "id", "size"];
+  const cluster_headers = ["address", "id", "role"];
 
-  const entries = txs.map(
-    ({
-      user,
-      encrypted,
-      decrypted,
-      block,
-      order,
-      rollup,
-      status,
-    }) => {
-      return {
-        user,
-        encrypted,
-        decrypted,
-        sequencer: block.sequencer,
-        block: block.height,
-        order,
-        rollup: rollup.title,
-        operator: rollup.operator,
-        status,
-      };
-    }
+  const rollup_entries = txs.map(({ address, id, size }) => {
+    return {
+      address,
+      id,
+      size,
+    };
+  });
+
+  const cluster_entries = txs.map(({ address, id, role }) => {
+    return {
+      address,
+      id,
+      role,
+    };
+  });
+
+  return (
+    <Container>
+      <Table headers={rollup_headers} entries={rollup_entries} />
+      <Table headers={cluster_headers} entries={cluster_entries} />
+    </Container>
   );
-
-  return <Table headers={headers} entries={entries} />;
 };
 
 export default TotalTxs;
